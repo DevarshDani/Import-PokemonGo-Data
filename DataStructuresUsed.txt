@@ -1,0 +1,37 @@
+Step1 – Aggregate data
+
+Data Structures:
+
+String, Arrays
+Function:
+
+DocumentBuilderFactory.newInstance() - creates an instance of document builder
+dbFactory.newDocumentBuilder() - builds the new document builder that will help in parsing the file
+dBuilder.parse(file) - returns the document we want to parse
+HBaseConfiguration.create() - creates configuration object
+ConnectionFactory.createConnection(config) - creates a connection object
+HTableDescriptor("PokemonDD09") - describes table with a name PokemonDD09
+HColumnDescriptor("PokestopData") - describes the column of the table
+addFamily() - adds column family to the table
+createTable(htable) - creates table
+Split method- split a string based on delimiter
+toString – convert an object to string type
+add - inserts row to hbase
+getLength() - returns the length of the node list
+getElementsByTagName - gives the element present with the given tag name
+nl.item(j) - returns the jth item of node list nl.
+et.getAttribute("k") = returns the value of the attribute k in the element et
+
+Algorithm:
+
+PokemonGO data	
+
+Created the node list for the Folder node, which gives the the type(Pokestop or Gym) all places under Pokestop folder are marked as type Pokestop and so on.
+Under the folder node list, created another node list placemark which has details of the longitude, latitude and placemark(like temple or shop etc) and name.
+After fetching all the values, inserted it into the hbase. And the loop continues until the last Folder tag.
+
+OpenStreetMap data
+
+This is similar to the above algorithm. Created a node list "node". If this node has a "tag" node in it. And has attributes "name" and "amenity" then the node
+"id", "longitude", "latitude" along with "name" and "amenity" is inserted into the Hbase. And the loop continues till the last "node" in the node list.     
+  

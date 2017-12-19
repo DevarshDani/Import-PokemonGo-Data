@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#delete output input file
+hdfs dfs -rm /cloudc-data/DataOSM.txt
+
+#put the input file in the cluster
+#hdfs dfs -put SamplePoke.txt /cloudc-data/OpenStreetMap.txt
+
+#delete output input file
+hdfs dfs -rm /cloudc-data/HoustonPokemonGO.txt
+
+#put the input file in the cluster
+hdfs dfs -put SamplePoke.txt /cloudc-data/HoustonPokemonGO.txt
+
+#put the input file in the cluster
+hdfs dfs -put SamplePoke.txt /cloudc-data/DataOSM.txt
+
+#Run the program
+HADOOP_CLASSPATH=`hbase classpath` yarn jar Pokemon.jar OSMPParser.Pokemon /cloudc-data/HoustonPokemonGO.txt
+#export HADOOP_HEAPSIZE=4000000
+#export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS -Xmx4g"
+#export JVM_ARGS="-Xms1024m -Xmx2048m"
+#export HADOOP_CLIENT_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
+HADOOP_CLASSPATH=`hbase classpath` yarn jar Pokemon.jar OSMPParser.OSMP /cloudc-data/DataOSM.txt
